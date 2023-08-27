@@ -13,7 +13,26 @@ func Test_CreateBackup(t *testing.T) {
 	r.NoError(err, "Backup could not be created!")
 }
 
-func Test_Folder_GetFiles(t *testing.T) {
-	// r := require.New(t)
+func Test_GetFilesFromConfig(t *testing.T) {
+	r := require.New(t)
 
+	testFile := "./testData/BackupConfig.json"
+	files, err := GetFilesFromConfig(testFile)
+
+	r.NoError(err)
+	r.Equal(2, len(files))
+}
+
+func Test_CreateBackupsFromConfig(t *testing.T) {
+	r := require.New(t)
+
+	testFile := "./testData/BackupConfig.json"
+	files, err := GetFilesFromConfig(testFile)
+
+	r.NoError(err)
+
+	for _, file := range files {
+		err := CreateBackup(file)
+		r.NoError(err, "Backup could not be created!")
+	}
 }

@@ -24,6 +24,10 @@ func DeleteLastXBackups(amount int) {
 
 }
 
-func GetFilesFromConfig() {
-
+func GetFilesFromConfig(configFile string) ([]string, error) {
+	config, err := ParseFilesFromConfig(configFile)
+	if err != nil {
+		return nil, err
+	}
+	return config.Files, nil
 }

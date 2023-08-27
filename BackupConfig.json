@@ -1,0 +1,6 @@
+{
+  "files":   [
+    "./testData/Folder",
+    "./testData/Folder/Data1.txt"
+  ]
+}
