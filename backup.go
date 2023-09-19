@@ -17,7 +17,7 @@ func CreateBackup(fileName string) error {
 		t.Day(), int(t.Month()), t.Year(), t.Hour(), t.Minute(), t.Second())
 
 	return Copy.Copy(fileName,
-		fmt.Sprintf("%s %s", fileName, suffix))
+		fmt.Sprintf("%s/%s %s", "backups", fileName, suffix))
 }
 
 func DeleteLastXBackups(amount int) {
