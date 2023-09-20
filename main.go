@@ -20,8 +20,6 @@ func main() {
 	flag.IntVar(&deleteLast, "d", 0, "Delete the last X backups")
 	flag.Parse()
 
-	DeleteLastXBackups(deleteLast)
-
 	files, err := GetFilesFromConfig(configFile)
 	if err != nil {
 		fmt.Println(err)
@@ -29,6 +27,10 @@ func main() {
 	}
 
 	for _, file := range files {
+		if deleteLast > 0 {
+			DeleteLastXBackups(file, deleteLast)
+		}
+
 		if err := CreateBackup(file); err != nil {
 			os.Exit(ExitCodeBackupError)
 		}
